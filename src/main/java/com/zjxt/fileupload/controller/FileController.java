@@ -81,7 +81,7 @@ public class FileController {
             // 获取属性 lastModifyTime 上次更改时间
             String lastModifyTime = request.getParameter("lastModifyTime");
             // 创建临时文件对象
-            File file = new File(currentFilePath+fileName+"."+lastModifyTime);
+            File file = new File(currentFilePath + fileName + "." + lastModifyTime);
             // 存在文件
             if(file.exists()){
                 randomAccessfile = new RandomAccessFile(file, "rw");
