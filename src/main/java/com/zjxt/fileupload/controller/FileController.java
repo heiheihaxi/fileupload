@@ -15,6 +15,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -310,8 +312,26 @@ public class FileController {
             }
 
         }
+    }
 
-
+    @RequestMapping("getAddresses")
+    public String getAddresses(HttpServletRequest request, HttpServletResponse response){
+        try {
+            String origin = request.getHeader("Origin");
+            response.setHeader("Access-Control-Allow-Origin", origin);
+            request.setCharacterEncoding("utf-8");
+            String addressName1 = request.getParameter("addressName");
+            String addressName = URLDecoder.decode(addressName1, "utf-8");
+            String addresses = request.getParameter("addresses");
+            String column = request.getParameter("column");
+            System.out.println("addressName:"+addressName+",colume:"+column);
+            System.out.println("addresses:"+addresses);
+            System.out.println("addressesLength:"+addresses.length());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return "false";
+        }
+        return "success";
     }
 
 
